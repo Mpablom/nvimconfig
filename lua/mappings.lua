@@ -70,3 +70,12 @@ map("o", "s", "l", { desc = "Move Right" })
 vim.wo.relativenumber = true
 vim. o.number = true
 
+-- Laravel
+local map = vim.keymap.set
+map("n", "<leader>la", "<cmd>Laravel artisan<cr>", { desc = "Laravel Artisan" })
+map("n", "<leader>lr", "<cmd>Laravel routes<cr>", { desc = "Laravel Routes" })
+map("n", "<leader>lm", "<cmd>Laravel related<cr>", { desc = "Laravel Related Files" })
+
+-- Debugging
+map("n", "<F5>", function() require("dap").continue() end, { desc = "Debug: Start/Continue" })
+map("n", "<F10>", function() require("dap").step_over() end, { desc = "Debug: Step Over" })
