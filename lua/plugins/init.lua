@@ -10,6 +10,9 @@ return {
     config = function()
       require "configs.lspconfig"
       local lspconfig = require "lspconfig"
+
+      -- Angular
+
       lspconfig.angularls.setup {
         cmd = { "ngserver", "--stdio", "--tsProbeLocations", "./node_modules", "--ngProbeLocations", "./node_modules" },
         root_dir = lspconfig.util.root_pattern("angular.json", "project.json"),
@@ -17,9 +20,75 @@ return {
         capabilities = require("cmp_nvim_lsp").default_capabilities(),
       }
 
+      -- Typescript
+
       lspconfig.ts_ls.setup {
         on_attach = function(client, bufnr) end,
         capabilities = require("cmp_nvim_lsp").default_capabilities(),
+      }
+
+      -- PhP/Laravel
+      lspconfig.intelephense.setup {
+        on_attach = function(client, bufnr)
+          -- Formateo con <leader>lf
+          vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { buffer = bufnr, desc = "Format PHP" })
+        end,
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        settings = {
+          intelephense = {
+            environment = {
+              includePaths = {
+                "/usr/share/php8",
+                "vendor/laravel/framework",
+              },
+            },
+            files = {
+              maxSize = 5000000,
+            },
+            stubs = {
+              "apache",
+              "bcmath",
+              "core",
+              "curl",
+              "date",
+              "dom",
+              "fileinfo",
+              "filter",
+              "gd",
+              "hash",
+              "iconv",
+              "intl",
+              "json",
+              "libxml",
+              "mbstring",
+              "mcrypt",
+              "mysql",
+              "mysqli",
+              "password",
+              "pcre",
+              "PDO",
+              "pdo_mysql",
+              "Phar",
+              "readline",
+              "session",
+              "SimpleXML",
+              "sockets",
+              "sodium",
+              "standard",
+              "superglobals",
+              "tokenizer",
+              "xml",
+              "xmlreader",
+              "xsl",
+              "Zend OPcache",
+              "zip",
+              "zlib",
+              "laravel",
+              "phpunit",
+            },
+          },
+        },
+        root_dir = lspconfig.util.root_pattern("composer.json", ".git"),
       }
     end,
   },
@@ -59,6 +128,7 @@ return {
         "typescript",
         "javascript",
         "python",
+        "php",
       },
     },
   },
@@ -79,6 +149,27 @@ return {
         },
       }
     end,
+  },
+  {
+    "adalessa/laravel.nvim",
+    ft = "php",
+    cond = function()
+      return vim.fn.filereadable "artisan" == 1 or vim.fn.filereadable "composer.json" == 1
+    end,
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "kevinhwang91/promise-async",
+    },
+    config = function()
+      require("laravel").setup()
+      require("telescope").load_extension "laravel"
+    end,
+  },
+  {
+    "jwalton512/vim-blade",
+    ft = "blade",
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
@@ -115,8 +206,6 @@ return {
       }
     end,
   },
-  
-  -- {
   -- 	"nvim-treesitter/nvim-treesitter",
   -- 	opts = {
   -- 		ensure_installed = {
