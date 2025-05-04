@@ -50,6 +50,9 @@ map("n", "<leader>a", ":w<CR>:botright 25split | terminal ng serve<CR>", { desc 
 map("n", "<leader>A", ":call system('killall ng')<CR>", { desc = "Detener Angular ng serve" })
 -- Run Python
 map("n", "<leader>r", ":w<CR>:botright 25split | terminal python3 %<CR>", { noremap = true, silent = true, desc = "Ejecutar Python" })
+-- Run Php local
+map("n", "<leader>ph", ":w<CR>:botright 25split | terminal php -S localhost:8000<CR>", { desc = "Ejecutar Php" })
+map("n", "<leader>Ph", ":call system('killall php')<CR>", { desc = "Detener Php" })
 
 -- Dvorak movement keys
 map("n", "h", "h", { desc = "Move Left" })
