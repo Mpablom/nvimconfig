@@ -1,7 +1,19 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
--- bootstrap lazy and all plugins
+-- Configuración global de diagnósticos
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "■",
+    spacing = 2,
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+})
+
+-- Bootstrap Lazy
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
 if not vim.uv.fs_stat(lazypath) then
@@ -11,11 +23,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_config = require "configs.lazy"
-vim.cmd [[
-  set background=dark
-]]
--- load plugins
+-- Carga de plugins
 require("lazy").setup({
   {
     "williamboman/mason.nvim",
@@ -52,14 +60,13 @@ require("lazy").setup({
     branch = "v2.5",
     import = "nvchad.plugins",
   },
-
   { import = "plugins" },
-}, lazy_config)
+}, require "configs.lazy")
 
--- load theme
+-- Configuración del tema
 require("tokyonight").setup({
-  style = "night", -- Estilo del tema
-  transparent = false, -- Opcional, desactiva el fondo transparente
+  style = "night",
+  transparent = false,
   terminal_colors = true,
   styles = {
     comments = { italic = true },
@@ -70,7 +77,9 @@ require("tokyonight").setup({
 })
 vim.cmd [[colorscheme tokyonight-night]]
 
+-- Configuración de plugins principales
 require("mason").setup()
+
 require("cmp").setup({
   snippet = {
     expand = function(args)
@@ -84,17 +93,17 @@ require("cmp").setup({
     ["<C-p>"] = require("cmp").mapping.select_prev_item(),
   },
   sources = {
-    {
-      name = "nvim_lsp",
-    },
+    { name = "nvim_lsp" },
   },
 })
+
 require("neotest").setup({
   adapters = {
     require "neotest-java",
   },
 })
--- load theme
+
+-- Carga de configuraciones adicionales
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
@@ -104,6 +113,3 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
-
-require("ibl").setup({})
-

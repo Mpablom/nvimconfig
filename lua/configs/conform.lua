@@ -1,9 +1,16 @@
 local options = {
   formatters_by_ft = {
+    go={"gofump"},
     lua = { "stylua" },
     python = { "black", "isort" },
     css = { "prettier" },
     html = { "prettier" },
+  },
+  formatters = {
+    gofumpt = {
+      command = "gofumpt",
+      args = { "-extra" },
+    },
   },
 
   -- format_on_save = {

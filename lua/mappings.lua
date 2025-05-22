@@ -82,3 +82,8 @@ map("n", "<leader>lm", "<cmd>Laravel related<cr>", { desc = "Laravel Related Fil
 -- Debugging
 map("n", "<F5>", function() require("dap").continue() end, { desc = "Debug: Start/Continue" })
 map("n", "<F10>", function() require("dap").step_over() end, { desc = "Debug: Step Over" })
+
+-- Keymaps para Go (ejecutar tests, coverage, etc.)
+vim.api.nvim_set_keymap("n", "<leader>gt", "<cmd>GoTest<CR>", { noremap = true, silent = true, desc = "Go Test" })
+vim.api.nvim_set_keymap("n", "<leader>gr", "<cmd>GoRun<CR>", { noremap = true, silent = true, desc = "Go Run" })
+vim.api.nvim_set_keymap("n", "<leader>gc", "<cmd>GoCoverage<CR>", { noremap = true, silent = true, desc = "Go Coverage" })
