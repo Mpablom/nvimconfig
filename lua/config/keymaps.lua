@@ -103,11 +103,11 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>G", ":call system('killall gradle')<CR>", { desc = "Detener Gradle Spring Boot" })
 vim.keymap.set(
   "n",
-  "<leader>a",
+  "<leader>an",
   ":w<CR>:botright 24split | terminal ng serve<CR>",
   { desc = "Ejecutar Angular ng serve" }
 )
-vim.keymap.set("n", "<leader>A", ":call system('killall ng')<CR>", { desc = "Detener Angular ng serve" })
+vim.keymap.set("n", "<leader>AN", ":call system('killall ng')<CR>", { desc = "Detener Angular ng serve" })
 vim.keymap.set(
   "n",
   "<leader>r",
