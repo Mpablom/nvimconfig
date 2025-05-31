@@ -8,7 +8,7 @@ return {
       ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
       provider = "copilot", -- Recommend using Claude
       cursor_applying_provider = "copilot", -- In this example, use Groq for applying, but you can also use any provider you want.
-      auto_suggestions_provider = "copilot", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+      auto_suggestions_provider = "copilot", -- Provider for auto-suggestions, can be different from the main provider
       behaviour = {
         auto_suggestions = true, -- Experimental stage
         auto_set_highlight_group = true,
@@ -16,6 +16,9 @@ return {
         auto_apply_diff_after_generation = false,
         support_paste_from_clipboard = false,
         enable_cursor_planning_mode = true, -- enable cursor planning mode!
+      },
+      notifications = {
+        enabled = false,
       },
       -- File selector configuration
       --- @alias FileSelectorProvider "native" | "fzf" | "mini.pick" | "snacks" | "telescope" | string
