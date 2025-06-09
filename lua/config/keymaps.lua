@@ -10,7 +10,7 @@ vim.keymap.set("i", "jk", "<ESC>", { desc = "Salir del modo inserción" })
 -- =============================================
 -- Editing
 -- =============================================
-vim.keymap.set("n", "<leader>dl", "yyp", { desc = "Duplicate Line" })
+vim.keymap.set("n", "<leader>Dl", "yyp", { desc = "Duplicate Line" })
 
 -- =============================================
 -- Testing (Neotest)
@@ -96,11 +96,11 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>M", ":call system('killall mvn')<CR>", { desc = "Detener Maven Spring Boot" })
 vim.keymap.set(
   "n",
-  "<leader>g",
+  "<leader>G",
   ":w<CR>:botright 25split | terminal ./gradlew bootRun<CR>",
   { desc = "Ejecutar Gradle Spring Boot" }
 )
-vim.keymap.set("n", "<leader>G", ":call system('killall gradle')<CR>", { desc = "Detener Gradle Spring Boot" })
+vim.keymap.set("n", "<leader>Gs", ":call system('killall gradle')<CR>", { desc = "Detener Gradle Spring Boot" })
 vim.keymap.set(
   "n",
   "<leader>an",
