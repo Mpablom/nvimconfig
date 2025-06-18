@@ -1,4 +1,3 @@
 # 💤 LazyVim
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+<![Java en nvim](./img/pic-full-180625-2011.png)
