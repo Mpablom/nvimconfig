@@ -15,8 +15,8 @@ return {
         script = true,
         replace_keycodes = false,
       })
-      vim.keymap.set("i", "<C-K>", "<Plug>(copilot-next)")
-      vim.keymap.set("i", "<C-L>", "<Plug>(copilot-previous)")
+      vim.keymap.set("i", "<C-N>", "<Plug>(copilot-next)")
+      vim.keymap.set("i", "<C-T>", "<Plug>(copilot-previous)")
     end,
   },
   {
