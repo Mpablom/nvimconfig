@@ -1,14 +1,12 @@
 return {
   {
     "github/copilot.vim",
-    lazy = false, -- Carga inmediatamente al iniciar Neovim
+    lazy = false,
     config = function()
-      -- Configuración básica (opcional)
       vim.g.copilot_no_tab_map = true
       vim.g.copilot_assume_mapped = true
       vim.g.copilot_tab_fallback = ""
 
-      -- Atajos de teclado personalizados
       vim.keymap.set("i", "<C-J>", 'copilot#Accept("<CR>")', {
         silent = true,
         expr = true,
@@ -17,6 +15,8 @@ return {
       })
       vim.keymap.set("i", "<C-N>", "<Plug>(copilot-next)")
       vim.keymap.set("i", "<C-T>", "<Plug>(copilot-previous)")
+      vim.keymap.set("i", "<C-E>", "<Plug>(copilot-dismiss)")
+      vim.keymap.set("i", "<C-Space>", "<Plug>(copilot-suggest)")
     end,
   },
   {
