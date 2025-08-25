@@ -31,7 +31,7 @@ return {
           vim.notify("lombok.jar no encontrado en: " .. lombok_jar, vim.log.levels.WARN)
         end
 
-        local java_home = "/usr/lib/jvm/openjdk-bin-21"
+        local java_home = "/usr/lib/jvm/openjdk-21"
         if vim.fn.isdirectory(java_home) == 0 then
           java_home = vim.fn.trim(vim.fn.system("dirname $(dirname $(readlink -f $(which java)))"))
         end
