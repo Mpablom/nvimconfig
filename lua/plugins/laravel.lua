@@ -34,10 +34,15 @@ return {
 
   -- Laravel.nvim (sin integración problemática con Telescope)
   {
+    "nvim-neotest/nvim-nio", -- Asegúrate de que la URL sea correcta
+    lazy = true,
+  },
+  {
     "adalessa/laravel.nvim",
     dependencies = {
       "tpope/vim-dotenv",
       "kevinhwang91/promise-async",
+      "nvim-neotest/nvim-nio",
     },
     config = function()
       require("laravel").setup({
