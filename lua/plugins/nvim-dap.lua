@@ -2,31 +2,17 @@
 
 return {
   {
-    -- Plugin: nvim-dap
-    -- URL: https://github.com/mfussenegger/nvim-dap
-    -- Description: Debug Adapter Protocol client implementation for Neovim.
     "mfussenegger/nvim-dap",
-    recommended = true, -- Recommended plugin
-    desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
+    recommended = true,
+    desc = "Debug Adapter Protocol client implementation for Neovim.",
 
     dependencies = {
-      -- Plugin: nvim-dap-ui
-      -- URL: https://github.com/rcarriga/nvim-dap-ui
-      -- Description: A UI for nvim-dap.
-      "rcarriga/nvim-dap-ui",
-
-      -- Plugin: nvim-dap-virtual-text
-      -- URL: https://github.com/theHamsta/nvim-dap-virtual-text
-      -- Description: Virtual text for the debugger.
-      {
-        "theHamsta/nvim-dap-virtual-text",
-        opts = {}, -- Default options
-      },
+      { "rcarriga/nvim-dap-ui" },
+      { "theHamsta/nvim-dap-virtual-text", opts = {} },
     },
 
-    -- Keybindings for nvim-dap
     keys = {
-      { "<leader>d", "", desc = "+debug", mode = { "n", "v" } }, -- Group for debug commands
+      { "<leader>d", "", desc = "+debug", mode = { "n", "v" } },
       {
         "<leader>dB",
         function()
@@ -150,6 +136,10 @@ return {
 
     config = function()
       local dap = require("dap")
+
+      -- ======================
+      -- PHP Adapter
+      -- ======================
       dap.adapters.php = {
         type = "executable",
         command = "node",
@@ -167,15 +157,42 @@ return {
         },
       }
 
-      -- Load mason-nvim-dap if available
-      if LazyVim.has("mason-nvim-dap.nvim") then
+      -- ======================
+      -- Python Adapter
+      -- ======================
+      local python_path = "/home/pablo/.local/share/nvim-venv/bin/python"
+      dap.adapters.python = {
+        type = "executable",
+        command = python_path,
+        args = { "-m", "debugpy.adapter" },
+      }
+      dap.configurations.python = {
+        {
+          type = "python",
+          request = "launch",
+          name = "Launch file",
+          program = "${file}",
+          pythonPath = function()
+            return python_path
+          end,
+        },
+      }
+
+      -- ======================
+      -- Mason integration
+      -- ======================
+      local has_python = #vim.fn.glob("*.py", 0, 1) > 0
+      if has_python and LazyVim.has("mason-nvim-dap.nvim") then
         require("mason-nvim-dap").setup(LazyVim.opts("mason-nvim-dap.nvim"))
       end
-
-      -- Set highlight for DapStoppedLine
+      -- ======================
+      -- Highlight stopped line
+      -- ======================
       vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
-      -- Define signs for DAP
+      -- ======================
+      -- Signs for DAP
+      -- ======================
       for name, sign in pairs(LazyVim.config.icons.dap) do
         sign = type(sign) == "table" and sign or { sign }
         vim.fn.sign_define(
@@ -184,26 +201,28 @@ return {
         )
       end
 
-      -- Setup DAP configuration using VsCode launch.json file
+      -- ======================
+      -- Load launch.json (VSCode style)
+      -- ======================
       local vscode = require("dap.ext.vscode")
       local json = require("plenary.json")
       vscode.json_decode = function(str)
         return vim.json.decode(json.json_strip_comments(str))
       end
 
-      -- Load launch configurations from .vscode/launch.json if it exists
       if vim.fn.filereadable(".vscode/launch.json") then
         vscode.load_launchjs()
       end
 
-      -- Function to load environment variables
+      -- ======================
+      -- Load environment variables
+      -- ======================
       local function load_env_variables()
         local variables = {}
         for k, v in pairs(vim.fn.environ()) do
           variables[k] = v
         end
 
-        -- Load variables from .env file manually
         local env_file_path = vim.fn.getcwd() .. "/.env"
         local env_file = io.open(env_file_path, "r")
         if env_file then
@@ -213,13 +232,10 @@ return {
             end
           end
           env_file:close()
-        else
-          print("Error: .env file not found in " .. env_file_path)
         end
         return variables
       end
 
-      -- Add the env property to each existing Go configuration
       for _, config in pairs(dap.configurations.go or {}) do
         config.env = load_env_variables
       end
