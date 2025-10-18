@@ -181,7 +181,7 @@ vim.keymap.set("n", "<C-s>", SaveFile, { desc = "Save file" })
 -- =============================================
 -- Additional Configuration
 -- =============================================
--- Deshabilitar teclas no deseadas
+-- Disable unwanted keys
 local disable_keys = {
   { "i", "<A-j>" },
   { "i", "<A-k>" },
@@ -197,12 +197,12 @@ for _, key in ipairs(disable_keys) do
   vim.api.nvim_set_keymap(key[1], key[2], "<Nop>", { noremap = true, silent = true })
 end
 
--- Comandos Artisan
+-- Commands Artisan
 vim.keymap.set("n", "<leader>am", ":Artisan make:", { desc = "Artisan Make" })
 vim.keymap.set("n", "<leader>ar", ":Artisan route:list<CR>", { desc = "List Routes" })
 vim.keymap.set("n", "<leader>at", ":Artisan tinker<CR>", { desc = "Tinker" })
 
--- Navegación entre componentes
+-- Navigation between components
 vim.keymap.set("n", "<leader>av", ":A view<CR>", { desc = "Go to View" })
 vim.keymap.set("n", "<leader>ac", ":A controller<CR>", { desc = "Go to Controller" })
 vim.keymap.set("n", "<leader>am", ":A model<CR>", { desc = "Go to Model" })
