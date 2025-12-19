@@ -206,3 +206,32 @@ vim.keymap.set("n", "<leader>at", ":Artisan tinker<CR>", { desc = "Tinker" })
 vim.keymap.set("n", "<leader>av", ":A view<CR>", { desc = "Go to View" })
 vim.keymap.set("n", "<leader>ac", ":A controller<CR>", { desc = "Go to Controller" })
 vim.keymap.set("n", "<leader>am", ":A model<CR>", { desc = "Go to Model" })
+
+-- =============================================
+-- Codeium AI Assistant
+-- =============================================
+vim.keymap.set("i", "<C-J>", function()
+  return vim.fn["codeium#Accept"]()
+end, { expr = true, silent = true, desc = "Codeium: Accept suggestion" })
+
+vim.keymap.set("i", "<C-N>", function()
+  return vim.fn["codeium#CycleCompletions"](1)
+end, { expr = true, silent = true, desc = "Codeium: Next suggestion" })
+
+vim.keymap.set("i", "<C-T>", function()
+  return vim.fn["codeium#CycleCompletions"](-1)
+end, { expr = true, silent = true, desc = "Codeium: Previous suggestion" })
+
+vim.keymap.set("i", "<C-E>", function()
+  return vim.fn["codeium#Clear"]()
+end, { expr = true, silent = true, desc = "Codeium: Clear suggestion" })
+
+vim.keymap.set("i", "<C-Space>", function()
+  return vim.fn["codeium#Complete"]()
+end, { expr = true, silent = true, desc = "Codeium: Trigger suggestion" })
+
+vim.keymap.set("n", "<leader>ca", ":Codeium Auth<CR>", { desc = "Codeium: Authenticate" })
+vim.keymap.set("n", "<leader>cs", ":Codeium Status<CR>", { desc = "Codeium: Show status" })
+vim.keymap.set("n", "<leader>ce", ":Codeium Enable<CR>", { desc = "Codeium: Enable" })
+vim.keymap.set("n", "<leader>cd", ":Codeium Disable<CR>", { desc = "Codeium: Disable" })
+vim.keymap.set("n", "<leader>cc", ":Codeium Chat<CR>", { desc = "Codeium: Open chat" })
