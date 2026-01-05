@@ -89,7 +89,7 @@ vim.keymap.set("n", "<leader>vs", ":vsplit<CR>", { desc = "Open Split Vertical" 
 -- =============================================
 vim.keymap.set(
   "n",
-  "<leader>m",
+  "<leader>mv",
   ":w<CR>:botright 25split | terminal mvn spring-boot:run<CR>",
   { desc = "Ejecutar Maven Spring Boot" }
 )
