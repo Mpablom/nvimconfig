@@ -1,6 +1,3 @@
--- Archivo: ~/.config/nvim/lua/plugins/codeium-cmp.lua
--- Integración de Codeium con nvim-cmp
-
 return {
   {
     "jcdickinson/codeium.nvim",
