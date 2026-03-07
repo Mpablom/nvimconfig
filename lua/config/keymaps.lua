@@ -13,6 +13,28 @@ vim.keymap.set("i", "jk", "<ESC>", { desc = "Salir del modo inserción" })
 vim.keymap.set("n", "<leader>Dl", "yyp", { desc = "Duplicate Line" })
 
 -- =============================================
+-- Toggle Maximize Window (tmux-like zoom)
+-- =============================================
+
+local zoomed = false
+local zoom_win = nil
+
+vim.keymap.set("n", "<leader>z", function()
+  if not zoomed then
+    zoom_win = vim.api.nvim_get_current_win()
+    vim.cmd("wincmd |")
+    vim.cmd("wincmd _")
+    zoomed = true
+  else
+    vim.cmd("wincmd =")
+    if zoom_win and vim.api.nvim_win_is_valid(zoom_win) then
+      vim.api.nvim_set_current_win(zoom_win)
+    end
+    zoomed = false
+  end
+end, { desc = "Toggle maximize window" })
+
+-- =============================================
 -- Testing (Neotest)
 -- =============================================
 vim.keymap.set("n", "<leader>to", function()
