@@ -48,6 +48,7 @@
   "nvim-ts-autotag": { "branch": "main", "commit": "8e1c0a389f20bf7f5b0dd0e00306c1247bda2595" },
   "nvim-web-devicons": { "branch": "master", "commit": "737cf6c657898d0c697311d79d361288a1343d50" },
   "oldworld.nvim": { "branch": "main", "commit": "4b7acaebd89129b46c8f702cc8c4ab36630f4abf" },
+  "opencode.nvim": { "branch": "main", "commit": "1088ee70dd997d785a1757d351c07407f0abfc9f" },
   "persistence.nvim": { "branch": "main", "commit": "b20b2a7887bd39c1a356980b45e03250f3dce49c" },
   "phpactor": { "branch": "master", "commit": "2517b170fd482a8f10e06ef0f1486abfb8f4122d" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },

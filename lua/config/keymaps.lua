@@ -256,4 +256,36 @@ vim.keymap.set("n", "<leader>ca", ":Codeium Auth<CR>", { desc = "Codeium: Authen
 vim.keymap.set("n", "<leader>cs", ":Codeium Status<CR>", { desc = "Codeium: Show status" })
 vim.keymap.set("n", "<leader>ce", ":Codeium Enable<CR>", { desc = "Codeium: Enable" })
 vim.keymap.set("n", "<leader>cd", ":Codeium Disable<CR>", { desc = "Codeium: Disable" })
-vim.keymap.set("n", "<leader>cc", ":Codeium Chat<CR>", { desc = "Codeium: Open chat" })
+vim.keymap.set("n", "<leader>cb", ":Codeium Chat<CR>", { desc = "Codeium: Open chat" })
+
+-- =============================================
+-- Opencode AI
+-- =============================================
+
+vim.keymap.set({ "n", "x" }, "<leader>oa", function()
+  require("opencode").ask("@this: ", { submit = true })
+end, { desc = "Opencode Ask" })
+
+vim.keymap.set({ "n", "x" }, "<leader>os", function()
+  require("opencode").select()
+end, { desc = "Opencode Select Action" })
+
+vim.keymap.set({ "n", "t" }, "<leader>ot", function()
+  require("opencode").toggle()
+end, { desc = "Toggle Opencode" })
+
+vim.keymap.set({ "n", "x" }, "<leader>or", function()
+  return require("opencode").operator("@this ")
+end, { expr = true, desc = "Send range to Opencode" })
+
+vim.keymap.set("n", "<leader>ol", function()
+  return require("opencode").operator("@this ") .. "_"
+end, { expr = true, desc = "Send line to Opencode" })
+
+vim.keymap.set("n", "<leader>ou", function()
+  require("opencode").command("session.half.page.up")
+end, { desc = "Opencode Scroll Up" })
+
+vim.keymap.set("n", "<leader>od", function()
+  require("opencode").command("session.half.page.down")
+end, { desc = "Opencode Scroll Down" })
