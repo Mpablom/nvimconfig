@@ -2,57 +2,50 @@ return {
   -- Sintaxis Blade
   {
     "jwalton512/vim-blade",
-    config = function()
-      vim.g.blade_custom_directives = {
-        "auth",
-        "can",
-        "cannot",
-        "production",
-        "env",
-        "inject",
-        "push",
-        "prepend",
-        "stack",
-        "vite",
-        "once",
-      }
-      vim.g.blade_custom_directives_pairs = {
-        { "custom", "endcustom" },
-        { "push", "endpush" },
-        { "verbatim", "endverbatim" },
-      }
-    end,
+    ft = "blade", -- Solo carga con archivos blade
   },
 
   -- Funcionalidad básica de Laravel
   {
     "noahfrederick/vim-laravel",
-    config = function()
-      vim.g.laravel_artisan_command = "php artisan"
-    end,
+    ft = "php", -- Solo carga con archivos PHP
   },
 
-  -- Laravel.nvim (sin integración problemática con Telescope)
+  -- nvim-nio (necesario pero no problemático)
   {
-    "nvim-neotest/nvim-nio", -- Asegúrate de que la URL sea correcta
+    "nvim-neotest/nvim-nio",
     lazy = true,
   },
+
+  -- Laravel.nvim - Solo cargar en proyectos Laravel
   {
     "adalessa/laravel.nvim",
     dependencies = {
       "tpope/vim-dotenv",
       "kevinhwang91/promise-async",
-      "nvim-neotest/nvim-nio",
+      "nvim-nio/nvim-nio",
     },
+    lazy = true, -- Carga perezosa
+    -- Detectar si estamos en un proyecto Laravel
+    cond = function()
+      -- Verifica si existe archivo artisan en el directorio actual o superiores
+      local function is_laravel_project()
+        local cwd = vim.fn.getcwd()
+        local artisan = vim.fn.findfile("artisan", cwd .. ";")
+        return artisan ~= ""
+      end
+      return is_laravel_project()
+    end,
     config = function()
       require("laravel").setup({
         commands = {
-          routes = false, -- Desactivamos la integración con Telescope
-          related = false, -- Desactivamos la integración con Telescope
+          routes = false,
+          related = false,
         },
         route_info = {
           position = "bottom",
         },
+        php_files_path = vim.fn.getcwd() .. "/.nvim-laravel",
       })
     end,
   },
