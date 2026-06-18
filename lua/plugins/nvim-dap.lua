@@ -202,19 +202,6 @@ return {
       end
 
       -- ======================
-      -- Load launch.json (VSCode style)
-      -- ======================
-      local vscode = require("dap.ext.vscode")
-      local json = require("plenary.json")
-      vscode.json_decode = function(str)
-        return vim.json.decode(json.json_strip_comments(str))
-      end
-
-      if vim.fn.filereadable(".vscode/launch.json") then
-        vscode.load_launchjs()
-      end
-
-      -- ======================
       -- Load environment variables
       -- ======================
       local function load_env_variables()
