@@ -230,33 +230,22 @@ vim.keymap.set("n", "<leader>ac", ":A controller<CR>", { desc = "Go to Controlle
 vim.keymap.set("n", "<leader>am", ":A model<CR>", { desc = "Go to Model" })
 
 -- =============================================
--- Codeium AI Assistant
+-- Supermaven AI Assistant
 -- =============================================
+-- Aceptar solo la siguiente palabra (similar a tu <C-J> de Codeium)
 vim.keymap.set("i", "<C-J>", function()
-  return vim.fn["codeium#Accept"]()
-end, { expr = true, silent = true, desc = "Codeium: Accept suggestion" })
+  require("supermaven-nvim.completion_preview").on_accept_suggestion_word()
+end, { silent = true, desc = "Supermaven: Accept word" })
 
-vim.keymap.set("i", "<C-N>", function()
-  return vim.fn["codeium#CycleCompletions"](1)
-end, { expr = true, silent = true, desc = "Codeium: Next suggestion" })
-
-vim.keymap.set("i", "<C-T>", function()
-  return vim.fn["codeium#CycleCompletions"](-1)
-end, { expr = true, silent = true, desc = "Codeium: Previous suggestion" })
-
+-- Limpiar sugerencia actual
 vim.keymap.set("i", "<C-E>", function()
-  return vim.fn["codeium#Clear"]()
-end, { expr = true, silent = true, desc = "Codeium: Clear suggestion" })
+  require("supermaven-nvim.completion_preview").on_clear_suggestion()
+end, { silent = true, desc = "Supermaven: Clear suggestion" })
 
-vim.keymap.set("i", "<C-Space>", function()
-  return vim.fn["codeium#Complete"]()
-end, { expr = true, silent = true, desc = "Codeium: Trigger suggestion" })
-
-vim.keymap.set("n", "<leader>ca", ":Codeium Auth<CR>", { desc = "Codeium: Authenticate" })
-vim.keymap.set("n", "<leader>cs", ":Codeium Status<CR>", { desc = "Codeium: Show status" })
-vim.keymap.set("n", "<leader>ce", ":Codeium Enable<CR>", { desc = "Codeium: Enable" })
-vim.keymap.set("n", "<leader>cd", ":Codeium Disable<CR>", { desc = "Codeium: Disable" })
-vim.keymap.set("n", "<leader>cb", ":Codeium Chat<CR>", { desc = "Codeium: Open chat" })
+-- Comandos útiles de Supermaven
+vim.keymap.set("n", "<leader>ct", ":SupermavenToggle<CR>", { desc = "Supermaven: Toggle" })
+vim.keymap.set("n", "<leader>cs", ":SupermavenStatus<CR>", { desc = "Supermaven: Status" })
+vim.keymap.set("n", "<leader>cl", ":SupermavenClearLog<CR>", { desc = "Supermaven: Clear log" })
 
 -- =============================================
 -- Opencode AI
