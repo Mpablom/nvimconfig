@@ -1,11 +1,13 @@
 return {
   "jameswolensky/marker-groups.nvim",
   dependencies = {
-    "nvim-telescope/telescope.nvim", -- Optional: Telescope picker
+    "nvim-telescope/telescope.nvim",
   },
   config = function()
     require("marker-groups").setup({
-      picker = "telescope",
+      pickers = {
+        backend = "telescope", -- Forzar telescope, evitar detección de mini.pick
+      },
     })
   end,
 }
