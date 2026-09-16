@@ -1,6 +1,6 @@
 {
   "LazyVim": { "branch": "main", "commit": "999700997f72227187d49d8b92667183dc7fc809" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "72d144a9e014646963b8a5c67a4fde19b9772528" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "b93515ed6410381cd4e9ccc875fe73f092ff421b" },
   "blink.cmp": { "branch": "main", "commit": "78336bc89ee5365633bcf754d93df01678b5c08f" },
   "blink.compat": { "branch": "main", "commit": "2ed6d9a28b07fa6f3bface818470605f8896408c" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
@@ -50,7 +50,7 @@
   "persistence.nvim": { "branch": "main", "commit": "b20b2a7887bd39c1a356980b45e03250f3dce49c" },
   "phpactor": { "branch": "master", "commit": "ec564f09bd36de643ce38d7ab442288fe8d44084" },
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
-  "render-markdown.nvim": { "branch": "main", "commit": "a778444a73080301a50c4a6f58c90d7e094dd59e" },
+  "render-markdown.nvim": { "branch": "main", "commit": "640a3ec6d538bad17c328be373c7cad0293d9589" },
   "rustaceanvim": { "branch": "master", "commit": "b25d186481624964523fee34f44c529b101c7435" },
   "smear-cursor.nvim": { "branch": "main", "commit": "9e9378d6ee34bb3782e0e8c63d9ec8ca618b479b" },
   "snacks.nvim": { "branch": "main", "commit": "882c996cf28183f4d63640de0b4c02ec886d01f2" },
