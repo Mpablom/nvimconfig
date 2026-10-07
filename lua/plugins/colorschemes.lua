@@ -49,6 +49,11 @@ return {
       opts = {},
     },
     {
+      "Gentleman-Programming/gentleman-kanagawa-blur",
+      name = "gentleman-kanagawa-blur",
+      priority = 1000,
+    },
+    {
       "rebelot/kanagawa.nvim",
       priority = 1000,
       lazy = true,
@@ -103,7 +108,7 @@ return {
       "LazyVim/LazyVim",
       opts = {
         -- Set the default color scheme
-        colorscheme = "kanagawa-dragon",
+        colorscheme = "gentleman-kanagawa-blur",
       },
     },
   },
