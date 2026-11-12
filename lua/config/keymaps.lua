@@ -278,3 +278,13 @@ end, { desc = "Opencode Scroll Up" })
 vim.keymap.set("n", "<leader>od", function()
   require("opencode").command("session.half.page.down")
 end, { desc = "Opencode Scroll Down" })
+
+-- =============================================
+-- Aerc Mail Client Mappings (Save and Exit)
+-- =============================================
+local function SaveAndExitAerc()
+  SaveFile()
+  vim.cmd("xa")
+end
+
+vim.keymap.set({ "n", "i" }, "<C-e>", SaveAndExitAerc, { desc = "Aerc: Save body and exit to review" })
